@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Resume.Presentation.Models.Entities.Educaties;
+﻿using Resume.Presentation.Models.Entities.Educaties;
 using System;
 using System.Collections.Generic;
 using System.Linq;

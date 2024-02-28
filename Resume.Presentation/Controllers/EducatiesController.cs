@@ -1,37 +1,35 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Resume.Application.Services.Interface;
 using Resume.Presentation.Models.Entities.Educaties;
 using Resume.Presentation.Models.ResumeDbContext;
+
 
 
 namespace Resume.Presentation.Controllers
 {
     public class EducatiesController : Controller
     {
-
-
-        private RsumeDbContext _context;
-        public EducatiesController(RsumeDbContext context)
+        #region CTOR
+        private readonly IEducationService _educationService;
+        public EducatiesController(IEducationService educationService)
         {
-            _context = context;
+            _educationService = educationService;
         }
+        #endregion
 
         [HttpGet]
-        public IActionResult listofEducaties()
+        public async Task <IActionResult> listofEducaties()
         {
-            List<Educaties> educaties = _context.Educaties.ToList();
-            return View();
+            List<Educaties>educaties=await _educationService.GetAllAnEducaties();
+            return View(educaties);
+
         }
         [HttpGet]
-        public IActionResult CreatAnEducaties()
+        public async Task Creat(Educaties educaties)
         {
-            Educaties educaties = new();
-            educaties.EducatiesTitle = "dskasmdnb";
-            educaties.EducatiesDuration = "2000";
-            educaties.EducatiesDescription = "Description";
-            _context.Add(educaties);
-            _context.SaveChanges();
-            return View();
+            await _educationService.CreatAnEducaties(educaties);
+
         }
     }
 }

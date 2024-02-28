@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Resume.Application.Services.Interface;
 using Resume.Presentation.Models.Entities.Educaties;
 using Resume.Presentation.Models.ResumeDbContext;
