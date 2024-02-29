@@ -10,7 +10,7 @@ namespace Resume.Presentation
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-         
+            builder.Services.AddDbContext<RsumeDbContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,7 +30,7 @@ namespace Resume.Presentation
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Admin}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

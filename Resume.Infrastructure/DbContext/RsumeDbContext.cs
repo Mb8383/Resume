@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Resume.Presentation.Models.Entities.Educaties;
-using Resume.Presentation.Models.Entities.Experience;
-using Resume.Presentation.Models.Entities.MySkills;
+using Resume.Domain.Models.Entities.Experience;
+using Resume.Domain.Models.Entities.Educaties;
+using Resume.Domain.Models.Entities.MySkills;
 
 namespace Resume.Presentation.Models.ResumeDbContext
 
