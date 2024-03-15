@@ -1,3 +1,5 @@
+using Resume.Domain.RepositoryInterface;
+using Resume.Infrastructure.Repository;
 using Resume.Presentation.Models.ResumeDbContext;
 
 namespace Resume.Presentation
@@ -11,6 +13,10 @@ namespace Resume.Presentation
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<RsumeDbContext>();
+            builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+            builder.Services.AddScoped<IExperinceRepository, ExperinceRepository>();
+            builder.Services.AddScoped<IMySkillsRepository, MySkillsRepository>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

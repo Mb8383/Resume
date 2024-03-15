@@ -1,34 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Resume.Domain.Models.Entities.Educaties;
 using Resume.Domain.Models.Entities.Experience;
 using Resume.Presentation.Models;
 using Resume.Domain.Models.Entities.MySkills;
-using Resume.Presentation.Models.ResumeDbContext;
 using System.Diagnostics;
 using Resume.Domain.DTO.Siteside.Home_Index;
+using Resume.Domain.RepositoryInterface;
+
 
 namespace Resume.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-		private RsumeDbContext _context;
-		public HomeController(RsumeDbContext context)
-		{
-			_context = context;
-		}
+        private readonly IEducationRepository _educationRepository;
+        private readonly IMySkillsRepository _mySkillsRepository;
+        private readonly IExperinceRepository _experinceRepository;
+        public HomeController(IMySkillsRepository mySkillsRepository, IExperinceRepository experinceRepository, IEducationRepository educationRepository)
+        {
+            _mySkillsRepository = mySkillsRepository;
+            _experinceRepository = experinceRepository;
+            _educationRepository = educationRepository;
+        }
 
-		public async Task< IActionResult> Index()
+        public async Task< IActionResult> Index()
         {
             #region MySKils
-           List<MySkills> MySkills = await _context.MySkills.ToListAsync();
+            List<MySkills> MySkills = _mySkillsRepository.MySkills();
 
 			#endregion
 			#region Educaties
-           List<Educaties> Educaties = await _context.Educaties.ToListAsync();
+           List<Educaties> Educaties = _educationRepository.Educaties();
 			#endregion
 			#region Experience
-            List<Experience> Experience = await _context.Experience.ToListAsync();
+            List<Experience> Experience =_experinceRepository.Experience();
 			#endregion
 			#region viewBag
 			//ViewBag.MySkills = MySkills;
