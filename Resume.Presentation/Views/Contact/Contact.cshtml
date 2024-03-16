@@ -1,0 +1,38 @@
+﻿@model Resume.Domain.DTO.ContactDTO
+<!-- Content --> 
+<div class="content" data-simplebar>
+	<div class="section mt-0">
+		<h1 class="title title--h1 title__separate">Contact</h1>
+	</div>
+
+<!-- Contact -->
+	<h2 class="title title--h2 md-5" >Contact Form</h2>
+
+	<form  class="contact-form" data-toggle="validator" asp-controller="Contact" asp-action="Contact">
+		<div class="row" >
+
+			<div class="form-group col-12 col-md-6 ">
+				<i class="font-icon icon-at"></i>
+				<input type="text" class="input input__icon form-control" asp-for="Name" placeholder="Full Name" required="required" autocomplete="on" oninvalid="setCustomValidity('Email is incorrect')" onkeyup="setCustomValidity('')">
+				<div class="help-block with-errors"></div>
+			</div>		
+			<div class="form-group col-12 col-md-6">
+				<i class="font-icon icon-at"></i>
+				<input type="text" class="input input__icon form-control" asp-for="PhoneNumber" placeholder="Fhone Number" required="required" autocomplete="on" oninvalid="setCustomValidity('Email is incorrect')" onkeyup="setCustomValidity('')">
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="form-group col-12 col-md-12">
+				<textarea class="textarea form-control" id="messageContact" asp-for="Message" placeholder="Your Message" rows="4" required="required" oninvalid="setCustomValidity('Fill in the field')" onkeyup="setCustomValidity('')"></textarea>
+				<div class="help-block with-errors"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-left">
+			</div>
+			<div class="col-12 col-md-6 order-1 order-md-2 text-right">
+				<button type="submit" class="btn"><i class="font-icon icon-send"></i> Send Message</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!-- Content End -->
