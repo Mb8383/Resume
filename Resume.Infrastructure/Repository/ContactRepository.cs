@@ -14,6 +14,7 @@ namespace Resume.Infrastructure.Repository
         public async Task AddContact(Contacts contacts)
         {
         _context.Add(contacts);
+        _context.SaveChanges();
         }
     }
 }
