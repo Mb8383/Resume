@@ -16,5 +16,6 @@ namespace Resume.Infrastructure.Repository
         _context.Add(contacts);
         _context.SaveChanges();
         }
+       
     }
 }

@@ -3,12 +3,13 @@ using Resume.Domain.DTO;
 using Resume.Domain.RepositoryInterface;
 using Resume.Domain.Entities;
 using Resume.Domain.Entities.Contact;
+using Resume.Application.Services.Interface;
 namespace Resume.Presentation.Controllers
 {
     public class ContactController : Controller
     {
-        public readonly IContactRepository _contactRepository;
-        public ContactController (IContactRepository contactRepository)
+        public readonly IContactService _contactRepository;
+        public ContactController (IContactService contactRepository)
         {
             _contactRepository = contactRepository;
         }
@@ -17,15 +18,9 @@ namespace Resume.Presentation.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Contact(ContactDTO contactDTO)
+        public async Task<IActionResult> Contact(ContactDTO contactDTO)
         {
-            Contacts contacts = new Contacts()
-            {
-                Name = contactDTO.Name,
-                PhoneNumber = contactDTO.PhoneNumber,
-                Message = contactDTO.Message,
-            };
-           _contactRepository.AddContact(contacts);
+         await   _contactRepository.AddContact(contactDTO);
             return View();
         }
 

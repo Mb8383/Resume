@@ -1,3 +1,5 @@
+using Resume.Application.Services.Implement;
+using Resume.Application.Services.Interface;
 using Resume.Domain.RepositoryInterface;
 using Resume.Infrastructure.Repository;
 using Resume.Presentation.Models.ResumeDbContext;
@@ -13,10 +15,20 @@ namespace Resume.Presentation
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<RsumeDbContext>();
+            #region Repository
             builder.Services.AddScoped<IEducationRepository, EducationRepository>();
             builder.Services.AddScoped<IExperinceRepository, ExperinceRepository>();
             builder.Services.AddScoped<IMySkillsRepository, MySkillsRepository>();
             builder.Services.AddScoped<IContactRepository, ContactRepository>();
+            #endregion
+
+            #region Services
+
+            builder.Services.AddScoped<IContactService,ContactService>();
+            builder.Services.AddScoped<IExperienceService,ExperienceService>();
+            builder.Services.AddScoped<IMySkillsService,MySkillsService>();
+            builder.Services.AddScoped<IEducationService,EducationService>();
+            #endregion
 
             var app = builder.Build();
 

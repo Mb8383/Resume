@@ -2,11 +2,6 @@
 using Resume.Domain.Models.Entities.Experience;
 using Resume.Domain.RepositoryInterface;
 using Resume.Presentation.Models.ResumeDbContext;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Resume.Infrastructure.Repository
 {

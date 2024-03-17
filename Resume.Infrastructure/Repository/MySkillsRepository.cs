@@ -16,7 +16,6 @@ namespace Resume.Infrastructure.Repository
         {
             _context = context;
         }
-
         public List<MySkills> MySkills()
         {
            return _context.MySkills.ToList();

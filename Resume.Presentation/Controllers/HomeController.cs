@@ -6,33 +6,34 @@ using Resume.Domain.Models.Entities.MySkills;
 using System.Diagnostics;
 using Resume.Domain.DTO.Siteside.Home_Index;
 using Resume.Domain.RepositoryInterface;
+using Resume.Application.Services.Interface;
 
 
 namespace Resume.Presentation.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IEducationRepository _educationRepository;
-        private readonly IMySkillsRepository _mySkillsRepository;
-        private readonly IExperinceRepository _experinceRepository;
-        public HomeController(IMySkillsRepository mySkillsRepository, IExperinceRepository experinceRepository, IEducationRepository educationRepository)
+        private readonly IEducationService _educationService;
+        private readonly IMySkillsService _mySkillsService;
+        private readonly IExperienceService _experienceService;
+        public HomeController(IMySkillsService mySkillsService, IExperienceService experienceService, IEducationService educationService)
         {
-            _mySkillsRepository = mySkillsRepository;
-            _experinceRepository = experinceRepository;
-            _educationRepository = educationRepository;
+            _mySkillsService = mySkillsService;
+            _experienceService = experienceService;
+            _educationService = educationService;
         }
 
         public async Task< IActionResult> Index()
         {
             #region MySKils
-            List<MySkills> MySkills = _mySkillsRepository.MySkills();
+            List<MySkills> MySkills = _mySkillsService.MySkills();
 
 			#endregion
 			#region Educaties
-           List<Educaties> Educaties = _educationRepository.Educaties();
+           List<Educaties> Educaties = await _educationService.GetAllAnEducaties();
 			#endregion
 			#region Experience
-            List<Experience> Experience =_experinceRepository.Experience();
+            List<Experience> Experience = _experienceService.Experience();
 			#endregion
 			#region viewBag
 			//ViewBag.MySkills = MySkills;
